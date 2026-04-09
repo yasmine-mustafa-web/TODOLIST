@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marmelad&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+        body{
+font-family: "Marmelad",sans-serif;
+        }
+      .taskContainer {
+        text-align: center;
+        margin: 100px auto;
+        justify-content: center;
+      }
+      button {
+        padding: 8px 10px;
+        cursor: pointer;
+        border-radius: 20px;
+        border: 1px solid black;
+        margin-left: 10px;
+        justify-content: center;
+        margin-top: 5px;
+        transition: all 0.3s ease;
+      }
+      button:hover{
+        transform: scale(1.03);
+      }
+      ul {
+        list-style: none;
+        margin: 0 auto;
+      }
+      li {
+        cursor: pointer;
+      }
+      input {
+        padding: 10px 9px;
+        border-radius: 20px;
+        width: 200px;
+        border: 1px solid black;
+      }
+      .completed {
+        text-decoration: line-through;
+        opacity: 0.6;
+      }
+    </style>
+    <div class="taskContainer">
+      <h2>TO-DO LIST</h2>
+      <input id="userInput" type="text" placeholder="add a task" />
+      <button id="btn">Add</button>
+      <ul id="tasklist"></ul>
+    </div>
+    <script>
+      const input = document.getElementById("userInput");
+      const btn = document.getElementById("btn");
+      const tasklist = document.getElementById("tasklist");
+      tasklist.innerHTML = localStorage.getItem("myTasks");
+      btn.addEventListener("click", addTask);
+      function addTask() {
+        if (input.value.trim() === "") {
+          return;
+        }
+        const li = document.createElement("li");
+        li.textContent = input.value;
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "x";
+        deleteBtn.addEventListener("click", function () {
+          li.remove();
+          save();
+        });
+        li.addEventListener("click", function () {
+          li.classList.toggle("completed");
+        });
+        li.appendChild(deleteBtn);
+        tasklist.appendChild(li);
+        input.value = "";
+        save();
+      }
+      function save() {
+        localStorage.setItem("myTasks", tasklist.innerHTML);
+      }
+    </script>
+  </body>
+</html>
