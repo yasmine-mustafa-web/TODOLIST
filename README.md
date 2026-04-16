@@ -1,5 +1,13 @@
-A very simple to-do-list just made to learn JavaScript.
+# To-do-list:
 
-You can write your lists you wanna do.
+It is a simple to-do-list I have made to apply on JS.
 
-used HTML and JS.
+# feautres:
+
+You can add , delete and dashed the done one.
+
+# tech stack :
+
+HTML , JavaScript and little of CSS.
+
+
